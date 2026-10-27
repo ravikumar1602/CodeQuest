@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+/* CodeQuest design tokens. Colors live here; components use the utility names. */
+@theme {
+  --color-navy-950: #060a18;
+  --color-navy-900: #0a1030;
+  --color-plum-800: #181036;
+  --color-plum-700: #251a4d;
+  --color-plum-600: #33246b;
+  --color-line: #34296a;
+  --color-cyan-glow: #22d3ee;
+  --color-violet-glow: #8b5cf6;
+  --color-fg: #e8ebff;
+  --color-muted: #a2aad2;
+  --color-ok: #34d399;
+  --color-warn: #fbbf24;
+  --color-bad: #f87171;
+
+  --font-sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+}
+
+html {
+  color-scheme: dark;
+  background: var(--color-navy-950);
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgb(139 92 246 / 0.18), transparent 60%),
+    radial-gradient(700px 400px at -10% 10%, rgb(34 211 238 / 0.10), transparent 60%),
+    var(--color-navy-950);
+  background-attachment: fixed;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-cyan-glow);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* The robot in the hero hops along a path. Plain CSS keeps it light. */
+@keyframes robot-run {
+  0%, 8%    { transform: translate(0, 0); }
+  22%       { transform: translate(100%, 0); }
+  36%       { transform: translate(100%, 100%); }
+  52%       { transform: translate(200%, 100%); }
+  66%       { transform: translate(200%, 200%); }
+  82%, 100% { transform: translate(300%, 200%); }
+}
+.robot-run { animation: robot-run 7s ease-in-out infinite; }
+
+@keyframes pulse-ring {
+  0%   { opacity: 0.7; transform: scale(0.9); }
+  100% { opacity: 0;   transform: scale(1.5); }
+}
+.goal-pulse { animation: pulse-ring 1.8s ease-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
